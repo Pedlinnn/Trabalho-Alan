@@ -1,2 +1,5 @@
 # Trabalho-Alan
-entrega do trabalho alan
+entrega do trabalho Alan
+Pedro Augusto Londe Ribeiro - 9340
+Gabriel Mello Lobo - 9367
+Thor Dimitri Ferreira - 9366
