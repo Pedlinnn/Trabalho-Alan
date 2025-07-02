@@ -4,7 +4,6 @@ import pygame
 import sys
 from menu_base import MenuBase
 from save_ranking import SaveRanking
-from typing import List, Dict
 
 if TYPE_CHECKING:
     from jogo import Jogo
@@ -20,17 +19,13 @@ class MenuMorte(MenuBase):
         super().__init__(surface, botoes, fonte_botoes, titulo="Vírus Eliminado!", fonte_titulo=fonte_titulo)
         self.jogo = jogo
 
-    def _criar_botoes_padrao(self, largura: int, altura: int) -> List[Dict]:
-        largura_b, altura_b, esp = 300, 60, 30
-        y0 = (altura - (4 * altura_b + 3 * esp)) // 2
-        x0 = (largura - largura_b) // 2
-        labels = ["Jogar", "Configurações", "Rankings", "Sair"]
+    def _create_buttons(self, w, h, labels):
+        largura_b, altura_b, esp = 300, 60, 30  # mesmo do MenuPausa
+        y0 = (h - (len(labels)*altura_b + (len(labels)-1)*esp)) // 2 + 100
+        x0 = (w - largura_b) // 2
         return [
-            {
-                "rect": pygame.Rect(x0, y0 + i * (altura_b + esp), largura_b, altura_b),
-                "texto": labels[i]
-            }
-            for i in range(4)
+            {"rect": pygame.Rect(x0, y0 + i*(altura_b+esp), largura_b, altura_b), "texto": labels[i]}
+            for i in range(len(labels))
         ]
 
     def on_click(self, pos):
