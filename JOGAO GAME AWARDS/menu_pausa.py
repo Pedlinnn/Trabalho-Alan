@@ -19,18 +19,11 @@ class MenuPausa(MenuBase):
         self.jogo = jogo
         self.ativo = True
 
-    def _criar_botoes_padrao(self, largura: int, altura: int) -> List[Dict]:
+    def _create_buttons(self, w, h, labels):
         largura_b, altura_b, esp = 300, 60, 30
-        y0 = (altura - (4 * altura_b + 3 * esp)) // 2
-        x0 = (largura - largura_b) // 2
-        labels = ["Jogar", "Configurações", "Rankings", "Sair"]
-        return [
-            {
-                "rect": pygame.Rect(x0, y0 + i * (altura_b + esp), largura_b, altura_b),
-                "texto": labels[i]
-            }
-            for i in range(4)
-        ]
+        y0 = (h - (len(labels)*altura_b + (len(labels)-1)*esp)) // 2
+        x0 = (w - largura_b) // 2
+        return [{"rect": pygame.Rect(x0, y0 + i*(altura_b+esp), largura_b, altura_b), "texto": labels[i]} for i in range(len(labels))]
 
     def on_click(self, pos):
         texto = next((b["texto"] for b in self.botoes if b["rect"].collidepoint(pos)), "")
